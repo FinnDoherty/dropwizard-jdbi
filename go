@@ -1,2 +1,1 @@
-gradle clean oneJar
-java -jar build/libs/dropwizard-jdbi-standalone.jar server config.yml
+gradle clean shadowJar && java -jar build/libs/example-service-all.jar server config.yml

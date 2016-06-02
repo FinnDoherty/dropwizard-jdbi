@@ -1,6 +1,6 @@
 apply plugin: 'java'
 apply plugin: 'flyway'
-apply plugin: 'gradle-one-jar'
+apply plugin: 'com.github.johnrengelman.shadow'
 apply plugin: 'application'
 apply plugin: 'idea'
 
@@ -14,16 +14,16 @@ targetCompatibility = '1.7'
 // The main class of the application
 mainClassName = 'com.example.ExampleApplication'
 
-// Add Gradle OneJar Plugin, see https://github.com/rholder/gradle-one-jar
 buildscript {
     repositories {
         mavenCentral()
+        jcenter()
     }
 
     dependencies {
-        classpath 'com.github.rholder:gradle-one-jar:1.0.3'
         classpath 'com.h2database:h2:1.4.181'
         classpath 'org.flywaydb:flyway-gradle-plugin:3.0'
+        classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.3'
     }
 }
 
@@ -54,20 +54,12 @@ flyway {
     user = 'sa'
 }
 
-// Configure the oneJar task
-task oneJar(type: OneJar) {
-    mainClass = mainClassName
-}
 
-// Configure the run task to start the Dropwizard service
-run {
-    args 'server', './config.yml'
+shadowJar {
+    baseName = 'example-service'
+    mergeServiceFiles()
 }
 
 task wrapper(type: Wrapper) {
     gradleVersion = '1.4'
-}
-
-artifacts {
-    oneJar
 }
