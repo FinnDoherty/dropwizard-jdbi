@@ -50,7 +50,7 @@ dependencies {
 
 // Configure flyway
 flyway {
-    url = 'jdbc:h2:file:./persondb'
+    url = 'jdbc:h2:file:./chinook'
     user = 'sa'
 }
 
