@@ -13,7 +13,7 @@ how jOOQ can simplify development and reduce repetition.
 Creates an H2 DB populated with the migration scripts in src/main/resources/db/migration
 
 ```
-gradle flywayMigrate -i
+./gradlew flywayMigrate -i
 ```
 
 ## Run Dropwizard service
@@ -21,7 +21,7 @@ gradle flywayMigrate -i
 To compile:
 
 ```
-gradle shadowJar
+./gradlew shadowJar
 ```
 
 To run:
@@ -35,5 +35,5 @@ Running the service will start an embedded H2 instance using the person.mv.db fi
 To test:
 
 ```
-gradle test
+./gradlew test
 ```
