@@ -14,6 +14,7 @@ public class TrackMapper implements ResultSetMapper<Track>
     {
         return new Track()
                 .setId(resultSet.getInt("TRACKID"))
-                .setName(resultSet.getString("NAME"));
+                .setName(resultSet.getString("NAME"))
+                .setAlbum(resultSet.getString("TITLE"));
     }
 }

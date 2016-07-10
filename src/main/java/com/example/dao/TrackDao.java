@@ -11,9 +11,27 @@ import java.util.List;
 
 @RegisterMapper(TrackMapper.class)
 public interface TrackDao {
-    @SqlQuery("select * from TRACK")
+    @SqlQuery("select * from TRACK t "
+            + "inner join album a on t.ALBUMID = a.ALBUMID"
+    )
     List<Track> getAll();
 
-    @SqlQuery("select * from TRACK where TRACKID = :id")
+    @SqlQuery("select * from TRACK t "
+            + "inner join album a on t.ALBUMID = a.ALBUMID "
+            + "where TRACKID = :id"
+    )
     Track getById(@Bind("id") int id);
+
+    @SqlQuery("select * from TRACK t "
+            + "inner join album a on t.ALBUMID = a.ALBUMID "
+            + "where upper(a.TITLE) = upper(:album)"
+    )
+    List<Track> searchByAlbumFullName(@Bind("album") String album);
+
+    @SqlQuery("select * from TRACK t "
+            + "inner join album a on t.ALBUMID = a.ALBUMID "
+            + "where upper(a.TITLE) like upper(:album)"
+    )
+    List<Track> searchByAlbumInitial(@Bind("album") String album);
+
 }
