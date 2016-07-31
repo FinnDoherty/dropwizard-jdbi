@@ -1,6 +1,8 @@
 package com.example;
 
+import com.example.dao.AlbumDao;
 import com.example.dao.TrackDao;
+import com.example.resources.AlbumResource;
 import com.example.resources.TrackResource;
 
 import io.dropwizard.Application;
@@ -32,6 +34,10 @@ public class ExampleApplication extends Application<ExampleConfiguration> {
         final TrackDao trackDao = jdbi.onDemand(TrackDao.class);
         final TrackResource trackResource = new TrackResource(trackDao);
 
+        final AlbumDao albumDao = jdbi.onDemand(AlbumDao.class);
+        final AlbumResource albumResource = new AlbumResource(albumDao);
+
         environment.jersey().register(trackResource);
+        environment.jersey().register(albumResource);
     }
 }
