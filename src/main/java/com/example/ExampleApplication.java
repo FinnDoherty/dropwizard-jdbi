@@ -1,8 +1,10 @@
 package com.example;
 
 import com.example.dao.AlbumDao;
+import com.example.dao.ArtistDao;
 import com.example.dao.TrackDao;
 import com.example.resources.AlbumResource;
+import com.example.resources.ArtistResource;
 import com.example.resources.TrackResource;
 
 import io.dropwizard.Application;
@@ -37,7 +39,11 @@ public class ExampleApplication extends Application<ExampleConfiguration> {
         final AlbumDao albumDao = jdbi.onDemand(AlbumDao.class);
         final AlbumResource albumResource = new AlbumResource(albumDao);
 
+        final ArtistDao artistDao = jdbi.onDemand(ArtistDao.class);
+        final ArtistResource artistResource = new ArtistResource(artistDao);
+
         environment.jersey().register(trackResource);
         environment.jersey().register(albumResource);
+        environment.jersey().register(artistResource);
     }
 }
