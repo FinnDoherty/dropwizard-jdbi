@@ -2,6 +2,8 @@ package com.example.core;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.List;
+
 import javax.validation.constraints.NotNull;
 
 public class Album {
@@ -15,6 +17,9 @@ public class Album {
 
     @JsonProperty
     private String artist;
+
+    @JsonProperty
+    private List<Track> tracks;
 
     public Integer getId() {
         return id;
@@ -43,6 +48,15 @@ public class Album {
         return this;
     }
 
+    public List<Track> getTracks() {
+        return tracks;
+    }
+
+    public Album setTracks(List<Track> tracks) {
+        this.tracks = tracks;
+        return this;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -60,7 +74,11 @@ public class Album {
         if (title != null ? !title.equals(album.title) : album.title != null) {
             return false;
         }
-        return artist != null ? artist.equals(album.artist) : album.artist == null;
+        if (artist != null ? !artist.equals(album.artist) : album.artist != null) {
+            return false;
+        }
+        return tracks != null ? tracks.equals(album.tracks) : album.tracks == null;
+
     }
 
     @Override
@@ -68,6 +86,7 @@ public class Album {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (title != null ? title.hashCode() : 0);
         result = 31 * result + (artist != null ? artist.hashCode() : 0);
+        result = 31 * result + (tracks != null ? tracks.hashCode() : 0);
         return result;
     }
 }

@@ -2,9 +2,11 @@ package com.example.dao;
 
 import com.example.core.Album;
 import com.example.core.mapper.AlbumMapper;
+import com.example.core.mapper.AlbumTrackMapper;
 
 import org.skife.jdbi.v2.sqlobject.Bind;
 import org.skife.jdbi.v2.sqlobject.SqlQuery;
+import org.skife.jdbi.v2.sqlobject.customizers.Mapper;
 import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapper;
 
 import java.util.List;
@@ -16,6 +18,7 @@ public interface AlbumDao {
     )
     List<Album> getAll();
 
+    @Mapper(AlbumTrackMapper.class)
     @SqlQuery("SELECT * FROM Album a "
             + "INNER JOIN artist at on a.ArtistId = at.ArtistId "
             + "WHERE AlbumId = :id"
