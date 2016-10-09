@@ -1,17 +1,12 @@
-# Dropwizard JDBI
+# Dropwizard jOOQ
 
-Test project for Dropwizard 8 using JDBI to interact with a DB.
+Based on the Dropwizard JDBI project at git@github.com:stevenalexander/dropwizard-jdbi.git
 
-Also using Flyway and H2 to create an in memory DB with test data for integration testing. Flyway solution can be
-expanded to create a fully featured Database Migration process using any JBDC compatible Database you can connect to.
-Using it here was overkill as I could have just used a simple script, I wanted to try it out as a comparison to Liquibase.
+I wanted to look into how to configure a Dropwizard project to use jOOQ.
 
-Code for JDBI integration was trivial, most of the effort was getting my head around the fact that I didn't have to do
-anything to startup the H2 instance (it starts itself as embedded instance when you try to connect to the local DB file
-by black magic). For reference the most useful stuff is probably in the build.gradle, libraries and plugins used.
+I also wanted to compare JDBI and jOOQ to demonstrate with specific examples
+how jOOQ can simplify development and reduce repetition.
 
-Didn't do integration tests as I figured for a real project it would make more sense to do full stack integration
-testing against the service and the production DB.
 
 ## Setup H2 DB
 
